@@ -1,0 +1,102 @@
+doctype html
+html
+  head
+    title= title
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    script(type='text/javascript', src='/javascripts/jquery-3.2.1.min.js')
+    link(rel='stylesheet', href='./stylesheets/style.css')
+    script(type='text/javascript').
+      function toggle(){
+          var x = document.getElementById("add-card");
+          if (x.style.display === "none") {
+              x.style.display = "block";
+          } else {
+              x.style.display = "none";
+          }
+      }
+    script.
+
+  body
+    header
+      //h1(style='color:#000;') #{vdata[0].tname}
+      .main-heading
+        .row
+          .col-sm-8
+            span(style='font-size: 36px;') Paisa Vasool
+            i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
+            //img(src=' /images/index.png' style='height: 120px; width: 200px;')
+          .col-sm-2
+            h4(style="text-align: right;") User Portfolio Number :
+          .col-sm-1
+            p(style="text-align: left; font-size: 30px;") #{uid}
+          .col-sm-1
+            .lgout-btn
+              a(href='/login') Logout
+      nav.container.nav-bar
+        ul
+          li
+            a(href='/homeUser') Home
+          li
+            a.active(href='/stocks') Stocks
+          li
+            a(href='/mf') Mutual Funds
+          li
+            a(href='/re') Real Estate
+          li
+            a(href='/misc') Miscellaneous
+    .container
+      //form(method='post', action='stocks/addStock')
+      .row
+        .col-sm-2(style='text-align: right;')
+          input.add-btn(type='submit', value='+', onclick='toggle();')
+        .col-sm-10(style='text-align: left; margin-top: 4%;')
+          h3 Add a Stock
+      form#add-card(method='post', action='stocks/addStock')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Company Name* :
+          .col-md-6
+            input.form-control(type='text', placeholder='Enter Company Name', name='company',required='',autofocus='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Trading Name* :
+          .col-md-6
+            input.form-control(type='text', placeholder='Enter Trading name', name='tname',required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Bought at Price* :
+          .col-md-6
+            input.form-control(type='number', placeholder='Enter Price bought at', name='buy',min=0, required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Number of Stocks* :
+          .col-md-6
+            input.form-control(type='number', placeholder='Enter Number of Stocks', name='nstock',min=1, required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l(for='date') Date* :
+          .col-md-6
+            input.form-control(type='date', placeholder='Enter Date of Purchase', name='date',required='')
+        .form-groupi
+          .col-md-4
+          .col-md-4
+            input.btn.btn-block.btn-success.btn-lg(type='submit', value='Done')
+          .col-md-3
+      //#chartContainer(style='height: 370px; width: 100%; margin: 100px 0px;')
+      //script(type='text/javascript', src='https://canvasjs.com/assets/script/jquery-1.11.1.min.js')
+      //script(type='text/javascript', src='https://canvasjs.com/assets/script/jquery.canvasjs.min.js')
+      if(vdata.length)
+        for data in vdata
+          .card
+            p.main-content-heading
+              | #{data.company}
+            p.main-content-body
+              | Trading name: #{data.tname}
+              br
+              | Current Price : Rs. #{data.curr}
+              br
+              | Number of Stocks : Rs. #{data.nstock}
+              br
+              hr
+              br
+              | Bought at: Rs. #{data.buy}
+              br
+              | Bought on date : #{data.bdate}
+      else
+        h2 No Stock Investments !

@@ -1,0 +1,37 @@
+//link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+//link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    link(href='/stylesheets/stylelogin.css', rel='stylesheet')
+  body
+    .w3ls-main
+      .wthree-container
+        .wthree-form
+          .agileits-2
+            h2 Login
+          form(action='login/verify', method='post')
+            if (value == 1)
+              .w3l(style='color:red')
+                h3 Invalid User Number/Password !
+            .w3-user
+              span
+                i.fa.fa-user-o(aria-hidden='true')
+              input(type='number', name='username', placeholder='User Portfolio Number', required='', autofocus='')
+            .clear
+            .w3-psw
+              span
+                i.fa.fa-key(aria-hidden='true')
+              input(type='password', name='pwd', placeholder='Password', required='')
+            .clear
+            .clear
+            .w3l-submit
+              input(type='submit', value='Login')
+            .clear
+            .w3l
+              h2(style='padding-top: 30px; padding-bottom: 15px;') New User ?
+              a(href='/signup' style='font-size: 30px') SignUp

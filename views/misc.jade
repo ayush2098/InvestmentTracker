@@ -1,0 +1,89 @@
+doctype html
+html
+  head
+    title= title
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    script(type='text/javascript', src='/javascripts/jquery-3.2.1.min.js')
+    link(rel='stylesheet', href='./stylesheets/style.css')
+    script(type='text/javascript').
+      function toggle(){
+          var x = document.getElementById("add-card");
+          if (x.style.display === "none") {
+              x.style.display = "block";
+          } else {
+              x.style.display = "none";
+          }
+      }
+    script.
+  body
+    header
+      .main-heading
+        .row
+          .col-sm-8
+            span(style='font-size: 36px;') Paisa Vasool
+            i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
+            //img(src=' /images/index.png' style='height: 120px; width: 200px;')
+          .col-sm-2
+            h4(style="text-align: right;") User Portfolio Number :
+          .col-sm-1
+            p(style="text-align: left; font-size: 30px;") #{uid}
+          .col-sm-1
+            .lgout-btn
+              a(href='/login') Logout
+      nav.container.nav-bar
+        ul
+          li
+            a(href='/homeUser') Home
+          li
+            a(href='/stocks') Stocks
+          li
+            a(href='/mf') Mutual Funds
+          li
+            a(href='/re') Real Estate
+          li
+            a.active(href='/misc') Miscellaneous
+    .container
+      //form(method='post', action='stocks/addStock')
+      .row
+        .col-sm-2(style='text-align: right;')
+          input.add-btn(type='submit', value='+', onclick='toggle();')
+        .col-sm-10(style='text-align: left; margin-top: 4%;')
+          h3 Add a Mutual Fund
+      form#add-card(method='post', action='misc/addMisc')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Investment Name* :
+          .col-md-6
+            input.form-control(type='text', placeholder='Enter Investment Name', name='name',required='',autofocus='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Description* :
+          .col-md-6
+            input.form-control(type='text', placeholder='Enter Description', name='desc',required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Amount* :
+          .col-md-6
+            input.form-control(type='number', placeholder='Enter Amount', name='amt',min='0',step='any', required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l(for='date') Date* :
+          .col-md-6
+            input.form-control(type='date', placeholder='Enter Date of Purchase', name='date',required='')
+        .form-groupi
+          .col-md-4
+          .col-md-4
+            input.btn.btn-block.btn-success.btn-lg(type='submit', value='Done')
+          .col-md-3
+      if(vdata.length)
+        for data in vdata
+          .card
+            p.main-content-heading
+              | #{data.name}
+            p.main-content-body
+              | Description :  #{data.desc}
+              br
+              hr
+              br
+              | Bought at Price : Rs. #{data.amt}
+              br
+              | Bought on: #{data.bdate}
+      else
+        h2 No Miscellaneous Investments !

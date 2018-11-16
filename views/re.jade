@@ -1,0 +1,100 @@
+doctype html
+html
+  head
+    title= title
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    script(type='text/javascript', src='/javascripts/jquery-3.2.1.min.js')
+    link(rel='stylesheet', href='./stylesheets/style.css')
+    script(type='text/javascript').
+      function toggle(){
+          var x = document.getElementById("add-card");
+          if (x.style.display === "none") {
+              x.style.display = "block";
+          } else {
+              x.style.display = "none";
+          }
+      }
+    script.
+  body
+    header
+      .main-heading
+        .row
+          .col-sm-8
+            span(style='font-size: 36px;') Paisa Vasool
+            i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
+            //img(src=' /images/index.png' style='height: 120px; width: 200px;')
+          .col-sm-2
+            h4(style="text-align: right;") User Portfolio Number :
+          .col-sm-1
+            p(style="text-align: left; font-size: 30px;") #{uid}
+          .col-sm-1
+            .lgout-btn
+              a(href='/login') Logout
+      nav.container.nav-bar
+        ul
+          li
+            a(href='/homeUser') Home
+          li
+            a(href='/stocks') Stocks
+          li
+            a(href='/mf') Mutual Funds
+          li
+            a.active(href='/re') Real Estate
+          li
+            a(href='/misc') Miscellaneous
+    .container
+      //form(method='post', action='stocks/addStock')
+      .row
+        .col-sm-2(style='text-align: right;')
+          input.add-btn(type='submit', value='+', onclick='toggle();')
+        .col-sm-10(style='text-align: left; margin-top: 4%;')
+          h3 Add a Mutual Fund
+      form#add-card(method='post', action='re/addRE')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Property Type* :
+          .col-md-6
+            input.form-control(type='text', placeholder='Enter Property type', name='type',required='',autofocus='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Area* :
+          .col-md-6
+            input.form-control(type='number', placeholder='Enter Area [in sqft]', name='area',min=0 , step='any',required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Location* :
+          .col-md-6
+            input.form-control(type='text', placeholder='Enter Location', name='loc', required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l(for='date') Date* :
+          .col-md-6
+            input.form-control(type='date', placeholder='Enter Date of Purchase', name='date',required='')
+        div.form-groupi
+          label.control-label.col-md-4.w3l Price* :
+          .col-md-6
+            input.form-control(type='number',step='any', placeholder='Enter Price [per sqft]', name='price',required='')
+        .form-groupi
+          .col-md-4
+          .col-md-4
+            input.btn.btn-block.btn-success.btn-lg(type='submit', value='Done')
+          .col-md-3
+      if(vdata.length)
+        for data in vdata
+          .card
+            .row
+              //.col-sm-10
+              p.main-content-heading
+                | #{data.type}
+              p.main-content-body
+                | Area :  #{data.area} sqft
+                br
+                | Location : #{data.loc}
+                br
+                hr
+                br
+                | Bought on: #{data.bdate}
+                br
+                | Bought at Price : Rs. #{data.price}
+              //.col-sm-2
+                form(action="re/delete" method="post")
+                  input.del-btn(type='submit', value='x')
+      else
+        h2 No Real Estate Investments !

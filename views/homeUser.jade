@@ -1,0 +1,77 @@
+doctype html
+html
+  head
+    title= title
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    script(type='text/javascript', src='/javascripts/jquery-3.2.1.min.js')
+    link(rel='stylesheet', href='./stylesheets/style.css')
+    script(type='text/javascript', src='/javascripts/jquery.canvasjs.min.js').
+    script(type='text/javascript').
+      var am1 = #{fa};
+      var am2 = #{sa};
+      var am3 = #{ra};
+      var am4 = #{ma};
+      window.onload = function () {
+      var options = {
+      title: {
+      text: "Assests Distribution"
+      },
+      subtitles: [{
+      text: "Till November, 2018"
+      }],
+      animationEnabled: true,
+      data: [{
+      type: "pie",
+      startAngle: 40,
+      toolTipContent: "<b>{label}</b>: Rs. {y}",
+      showInLegend: "true",
+      legendText: "{label}",
+      indexLabelFontSize: 16,
+      indexLabel: "{label} - Rs. {y}",
+      dataPoints: [
+      { y: am1, label: "Mutual Funds" },
+      { y: am2, label: "Stocks" },
+      { y: am3, label: "Real Estate" },
+      { y: am4, label: "Miscellaneous" }
+      ]
+      }]
+      };
+      $("#chartContainer").CanvasJSChart(options);
+      }
+    script.
+  body
+    header
+      .main-heading
+        .row
+          .col-sm-8
+            span(style='font-size: 36px;') Paisa Vasool
+            i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
+            //img(src=' /images/index.png' style='height: 120px; width: 200px;')
+          .col-sm-2
+            h4(style="text-align: right;") User Portfolio Number :
+          .col-sm-1
+            p(style="text-align: left; font-size: 30px;") #{uid}
+          .col-sm-1
+            .lgout-btn
+              a(href='/login') Logout
+      nav.container.nav-bar
+        ul
+          li
+            a.active(href='/homeUser') Home
+          li
+            a(href='/stocks') Stocks
+          li
+            a(href='/mf') Mutual Funds
+          li
+            a(href='/re') Real Estate
+          li
+            a(href='/misc') Miscellaneous
+    .container
+      .body-div
+        .card(style='background-color:#5cb85c; color: #fff; border-radius: 50px; margin-top: 7%;')
+          p.main-content-heading(style='font-weight: bold; font-size: 40px;')
+            | Portfolio Summary : Rs #{totsum}
+          p.main-content-body
+            | The summary is a total of holdings across all investments.
+      #chartContainer(style='height: 370px; width: 100%; margin: 100px 0px;')

@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    link(href='/stylesheets/stylelogin.css', rel='stylesheet')
+  body
+    .w3ls-main
+      .container
+        .wthree-form
+          .agileits-2
+            h2 Sign Up
+          form(action='/signup', method='post')
+            if (retry == 'true')
+              .w3l(style='color:red')
+                h3 User Portfolio Number already exixts !
+          form.form-horizontal.formText(action='/signup/submitUser', method='post')
+            div.form-group
+              label.control-label.col-md-3.w3l Name* :
+              .col-md-7
+                input.form-control(type='text', placeholder='Enter Name', name='nm',required='',autofocus='')
+            div.form-group
+              label.control-label.col-md-3.w3l(for='email') Email* :
+              .col-md-7
+                input.form-control(type='email', placeholder='Enter Email ID', name='email',required='')
+            div.form-group
+              label.control-label.col-md-3.w3l Phone Number* :
+              .col-md-7
+                input.form-control(type='tel', placeholder='Enter Phone Number [10 digits]', name='phno', pattern='[0-9]{10}', required='')
+            div.form-group
+              label.control-label.col-md-3.w3l User Portfolio Number* :
+              .col-md-7
+                input.form-control(type='number', placeholder='Enter User Portfolio Number', name='usrid',min=100, required='')
+            div.form-group
+              label.control-label.col-md-3.w3l(for='password') Password* :
+              .col-md-7
+                input.form-control(type='password', placeholder='Enter Password', name='pwd',required='')
+            .form-group
+              .col-md-2
+              .col-md-8
+                input.btn.btn-block.btn-success.btn-lg(type='submit', name='signup', value='Done')
+              .col-md-2
