@@ -69,9 +69,16 @@ html
             a(href='/misc') Miscellaneous
     .container
       .body-div
-        .card(style='background-color:#5cb85c; color: #fff; border-radius: 50px; margin-top: 7%;')
+        .card(style='background-color:#{colr}; color: #fff; border-radius: 50px; margin-top: 7%; padding: 3%;')
           p.main-content-heading(style='font-weight: bold; font-size: 40px;')
             | Portfolio Summary : Rs #{totsum}
           p.main-content-body
             | The summary is a total of holdings across all investments.
+      .row
+        .col-sm-1
+        .col-sm-10
+          div(style='margin: 10px; display: inline-block;')
+            p.fa.fa-circle(style='color:#5cb85c; font-size: 20px; margin: 20px;') &nbsp;Healthy
+            p.fa.fa-circle(style='color:#f0ad4e; font-size: 20px; margin: 20px;') &nbsp;Neutral
+            p.fa.fa-circle(style='color:#d9534f; font-size: 20px; margin: 20px;') &nbsp;Risky
       #chartContainer(style='height: 370px; width: 100%; margin: 100px 0px;')

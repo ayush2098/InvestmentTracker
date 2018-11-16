@@ -49,7 +49,7 @@ html
         .col-sm-2(style='text-align: right;')
           input.add-btn(type='submit', value='+', onclick='toggle();')
         .col-sm-10(style='text-align: left; margin-top: 4%;')
-          h3 Add a Mutual Fund
+          h3 Add a Miscellaneous Investment
       form#add-card(method='post', action='misc/addMisc')
         div.form-groupi
           label.control-label.col-md-4.w3l Investment Name* :
@@ -80,10 +80,10 @@ html
             p.main-content-body
               | Description :  #{data.desc}
               br
-              hr
+            div(style='background-color: #ddd; padding: 20px;')
               br
               | Bought at Price : Rs. #{data.amt}
               br
               | Bought on: #{data.bdate}
       else
-        h2 No Miscellaneous Investments !
+        h2(style='padding: 50px; margin: 50px;') No Miscellaneous Investments !

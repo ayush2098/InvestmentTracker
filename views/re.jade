@@ -44,12 +44,11 @@ html
           li
             a(href='/misc') Miscellaneous
     .container
-      //form(method='post', action='stocks/addStock')
       .row
         .col-sm-2(style='text-align: right;')
           input.add-btn(type='submit', value='+', onclick='toggle();')
         .col-sm-10(style='text-align: left; margin-top: 4%;')
-          h3 Add a Mutual Fund
+          h3 Add a Real Estate Investment
       form#add-card(method='post', action='re/addRE')
         div.form-groupi
           label.control-label.col-md-4.w3l Property Type* :
@@ -80,21 +79,21 @@ html
         for data in vdata
           .card
             .row
-              //.col-sm-10
-              p.main-content-heading
-                | #{data.type}
-              p.main-content-body
-                | Area :  #{data.area} sqft
-                br
-                | Location : #{data.loc}
-                br
-                hr
-                br
-                | Bought on: #{data.bdate}
-                br
-                | Bought at Price : Rs. #{data.price}
-              //.col-sm-2
-                form(action="re/delete" method="post")
-                  input.del-btn(type='submit', value='x')
+              .col-sm-10
+                p.main-content-heading
+                  | #{data.type}
+                p.main-content-body
+                  | Area :  #{data.area} sqft
+                  br
+                  | Location : #{data.loc}
+                  br
+              .col-sm-1
+                form(action='re/delete' method='post')
+                  input.del-btn(type='submit' value='x' )
+            div(style='background-color: #ddd; padding: 20px;')
+              br
+              | Bought on: #{data.bdate}
+              br
+              | Bought at Price : Rs. #{data.price}
       else
-        h2 No Real Estate Investments !
+        h2(style='padding: 50px; margin: 50px;') No Real Estate Investments !

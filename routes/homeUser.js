@@ -41,7 +41,11 @@ router.get('/', function(req, res, next) {
 							if(stockAmt==undefined)stockAmt=0;
 							console.log(miscAmt);
 							var totsum = mfAmt+stockAmt+reAmt+miscAmt;
-							res.render('homeUser', {title: 'User\'s Home', uid: userid, totsum: totsum, sa: stockAmt, ra: reAmt, ma: miscAmt, fa: mfAmt});
+							var colr;
+							if(mfAmt>=(stockAmt+reAmt+miscAmt))  colr="#5cb85c";
+							else if(mfAmt+miscAmt>=(stockAmt+reAmt)) colr="#f0ad4e";
+							else colr="#d9534f";
+							res.render('homeUser', {title: 'User\'s Home', uid: userid, totsum: totsum, sa: stockAmt, ra: reAmt, ma: miscAmt, fa: mfAmt, colr: colr});
 						});
 					});
 				});

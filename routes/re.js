@@ -41,6 +41,26 @@ router.get('/', function(req, res, next) {
 	}
 });
 
+router.post('/delete', function(req, res, next) {
+	var con = mysql.createConnection({
+		host: 'localhost',
+		user: creds.creds[0].username,
+		password: creds.creds[0].password,
+		database: 'portfolio'
+	});
+
+	con.connect(function(err) {
+		if(err) throw err;
+		var sql = "DELETE FROM real_estate WHERE uid="+userid;
+		con.query(sql, function(err, result) {
+			if(err) throw err;
+			else{
+				res.redirect('/re');
+			}
+		});
+	});
+});
+
 
 router.post('/addRE', function(req, res, next) {
 	var con = mysql.createConnection({

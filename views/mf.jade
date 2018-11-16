@@ -81,10 +81,10 @@ html
             p.main-content-body
               | Principal Amount : Rs. #{data.principal}
               br
-              hr
+            div(style='background-color: #ddd; padding: 20px;')
               br
               | Bought at rate : #{data.rate} %
               br
               | Bought on: #{data.bdate}
       else
-        h2 No Mutual Fund Investments !
+        h2(style='padding: 50px; margin: 50px;') No Mutual Fund Investments !

@@ -91,12 +91,12 @@ html
               br
               | Current Price : Rs. #{data.curr}
               br
-              | Number of Stocks : Rs. #{data.nstock}
+              | Number of Stocks : #{data.nstock}
               br
-              hr
+            div(style='background-color: #ddd; padding: 20px;')
               br
               | Bought at: Rs. #{data.buy}
               br
               | Bought on date : #{data.bdate}
       else
-        h2 No Stock Investments !
+        h2(style='padding: 50px; margin: 50px;') No Stock Investments !
