@@ -22,9 +22,9 @@ html
       .main-heading
         .row
           .col-sm-8
-            span(style='font-size: 36px;') Paisa Vasool
-            i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
-            //img(src=' /images/index.png' style='height: 120px; width: 200px;')
+            //span(style='font-size: 36px;') Paisa Vasool
+            //i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
+            img(src=' /images/index.png' style='height: 120px; width: 200px;')
           .col-sm-2
             h4(style="text-align: right;") User Portfolio Number :
           .col-sm-1
@@ -76,11 +76,17 @@ html
       if(vdata.length)
         for data in vdata
           .card
-            p.main-content-heading
-              | #{data.company}
-            p.main-content-body
-              | Principal Amount : Rs. #{data.principal}
-              br
+            .row
+              .col-sm-10
+                p.main-content-heading
+                  | #{data.company}
+                p.main-content-body
+                  | Principal Amount : Rs. #{data.principal}
+                  br
+              .col-sm-1
+                form(action='mf/delete' method='post')
+                  input(name='thisID' value=data.iid style="display:none;")
+                  input.del-btn(type='submit' name='thisID' value='x')
             div(style='background-color: #ddd; padding: 20px;')
               br
               | Bought at rate : #{data.rate} %

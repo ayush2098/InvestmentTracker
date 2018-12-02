@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 					ob["loc"] = result[i].loc;
 					ob["bdate"] = result[i].buying_date;
 					ob["price"] = result[i].price;
-
+					ob["iid"] = result[i].rid;
 					vdata.push(ob);
 				}
 				res.render('re', { title: 'Real Estate', uid: userid, vdata: vdata });
@@ -51,7 +51,8 @@ router.post('/delete', function(req, res, next) {
 
 	con.connect(function(err) {
 		if(err) throw err;
-		var sql = "DELETE FROM real_estate WHERE uid="+userid;
+		var toDel = req.body.thisID;
+		var sql = "Delete FROM real_estate WHERE rid = "+parseInt(toDel)+";";
 		con.query(sql, function(err, result) {
 			if(err) throw err;
 			else{

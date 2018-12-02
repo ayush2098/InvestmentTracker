@@ -21,9 +21,9 @@ html
       .main-heading
         .row
           .col-sm-8
-            span(style='font-size: 36px;') Paisa Vasool
-            i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
-            //img(src=' /images/index.png' style='height: 120px; width: 200px;')
+            //span(style='font-size: 36px;') Paisa Vasool
+            //i.fa.fa-money(style='padding: 20px; font-size: 36px; color: darkgreen;')
+            img(src=' /images/index.png' style='height: 120px; width: 200px;')
           .col-sm-2
             h4(style="text-align: right;") User Portfolio Number :
           .col-sm-1
@@ -89,7 +89,8 @@ html
                   br
               .col-sm-1
                 form(action='re/delete' method='post')
-                  input.del-btn(type='submit' value='x' )
+                  input(name='thisID' value=data.iid style="display:none;")
+                  input.del-btn(type='submit' name='thisID' value='x')
             div(style='background-color: #ddd; padding: 20px;')
               br
               | Bought on: #{data.bdate}

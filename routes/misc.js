@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 					ob["desc"] = result[i].description;
 					ob["amt"] = result[i].amount;
 					ob["bdate"] = result[i].buying_date;
+					ob["iid"] = result[i].mid;
 
 					vdata.push(ob);
 				}
@@ -40,6 +41,26 @@ router.get('/', function(req, res, next) {
 	}
 });
 
+router.post('/delete', function(req, res, next) {
+	var con = mysql.createConnection({
+		host: 'localhost',
+		user: creds.creds[0].username,
+		password: creds.creds[0].password,
+		database: 'portfolio'
+	});
+
+	con.connect(function(err) {
+		if(err) throw err;
+		var toDel = req.body.thisID;
+		var sql = "Delete FROM misc_exp WHERE mid = "+parseInt(toDel)+";";
+		con.query(sql, function(err, result) {
+			if(err) throw err;
+			else{
+				res.redirect('/misc');
+			}
+		});
+	});
+});
 
 router.post('/addMisc', function(req, res, next) {
 	var con = mysql.createConnection({

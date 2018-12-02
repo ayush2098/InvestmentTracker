@@ -30,6 +30,7 @@ router.get('/', function(req, res, next) {
 					ob["curr"] = result[i].curr_price;
 					ob["nstock"] = result[i].no_stocks;
 					ob["bdate"] = result[i].buying_date;
+					ob["iid"] = result[i].sid;
 
 					vdata.push(ob);
 				}
@@ -43,6 +44,28 @@ router.get('/', function(req, res, next) {
 	} else {
 		res.redirect('/login');
 	}
+});
+
+
+router.post('/delete', function(req, res, next) {
+	var con = mysql.createConnection({
+		host: 'localhost',
+		user: creds.creds[0].username,
+		password: creds.creds[0].password,
+		database: 'portfolio'
+	});
+
+	con.connect(function(err) {
+		if(err) throw err;
+		var toDel = req.body.thisID;
+		var sql = "Delete FROM stock WHERE sid = "+parseInt(toDel)+";";
+		con.query(sql, function(err, result) {
+			if(err) throw err;
+			else{
+				res.redirect('/stocks');
+			}
+		});
+	});
 });
 
 router.post('/addStock', function(req, res, next) {
